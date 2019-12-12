@@ -6,6 +6,13 @@ Docker containers used to provide consistent environments to build, run, and dev
 
 If Docker isn't already installed, follow [these instructions](https://docs.docker.com/install/) to install it.
 
+To use a pre-built image:
+
+    docker load --input <path to downloaded devel-env image>
+    docker run -it --name <container name> map/devel-env
+
+To build the images from scratch:
+
     make
     docker run -it --name <container name> map/devel-env
 
