@@ -4,6 +4,8 @@ Docker containers used to provide consistent environments to build, run, and dev
 
 ## Quick Start for Development Environment
 
+If Docker isn't already installed, follow [these instructions](https://docs.docker.com/install/) to install it.
+
     make
     docker run -it --name <container name> map/devel-env
 
