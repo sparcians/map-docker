@@ -14,11 +14,11 @@ To use a pre-built image:
 To build the images from scratch:
 
     make
-    docker run -it --name <container name> map/devel-env
+    docker run -it --name <container name> -m 4g map/devel-env
 
 If you want to map a local directory to the container, use the following run command instead:
 
-    docker run -it -v <path to local dir>:<path in container> --name <container name> map/devel-env
+    docker run -it -v <path to local dir>:<path in container> --name <container name> -m 4g map/devel-env
 
 ## Restarting an Existing Container
 
