@@ -22,6 +22,6 @@ $(IMAGES): %:
 	docker build -t $(REGISTRY)/$@ $(subst :,/,$@)
 
 %.tar.xz: $(IMAGES)
-	docker save $(REGISTRY)/$(basename $(basename $@)):latest | xz > $@
+	docker save $(REGISTRY)/$(basename $(basename $@)):latest | xz -T0 > $@
 
 export: $(EXPORTED)
