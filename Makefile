@@ -1,6 +1,7 @@
 REGISTRY?=map
 DOCKERFILES=$(shell find * -type f -name Dockerfile)
 IMAGES=$(subst /,\:,$(subst /Dockerfile,,$(DOCKERFILES)))
+EXPORTED=$(addsuffix .tar.xz, $(IMAGES))
 DEPENDS=.depends.mk
 
 .PHONY: all clean $(IMAGES)
@@ -19,3 +20,8 @@ sinclude $(DEPENDS)
 
 $(IMAGES): %:
 	docker build -t $(REGISTRY)/$@ $(subst :,/,$@)
+
+%.tar.xz: $(IMAGES)
+	docker save $(REGISTRY)/$(basename $(basename $@)):latest | xz > $@
+
+export: $(EXPORTED)
