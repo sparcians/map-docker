@@ -6,6 +6,8 @@ Docker containers used to provide consistent environments to build, run, and dev
 
 If Docker isn't already installed, follow [these instructions](https://docs.docker.com/install/) to install it.
 
+To use Docker under WSL, look [here](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly).
+
 To use a pre-built image:
 
     docker load --input <path to downloaded devel-env image>
@@ -19,6 +21,11 @@ To build the images from scratch:
 If you want to map a local directory to the container, use the following run command instead:
 
     docker run -it -v <path to local dir>:<path in container> --name <container name> -m 4g map/devel-env
+
+If you're running Windows, mapping a local directory may be problematic. The easiest way to work around this is with a Docker volume:
+
+    docker volume create work
+    docker run -it -v work:<path in container> -name <container name> -m 4g map/devel-env
 
 ## Restarting an Existing Container
 
