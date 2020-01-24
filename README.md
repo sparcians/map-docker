@@ -25,7 +25,7 @@ If you want to map a local directory to the container, use the following run com
 If you're running Windows, mapping a local directory may be problematic. The easiest way to work around this is with a Docker volume:
 
     docker volume create work
-    docker run -it -v work:/work -name <container name> -m 4g map/devel-env
+    docker run -it -v work:/work --name <container name> -m 4g map/devel-env
 
 ## Restarting an Existing Container
 
