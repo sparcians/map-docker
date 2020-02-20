@@ -56,4 +56,12 @@ RUN dnf -y -q install pixman pixman-devel
 
 RUN dnf -y -q install glibc-static glib2-static pcre-static
 
+RUN dnf -y -q install xz-devel
+
+RUN dnf -y -q install python2-scons swig python2-six
+
+RUN dnf -y -q install protobuf protobuf-compiler protobuf-devel gperftools-libs gperftools-devel gperftools
+
+RUN dnf -y -q install libtool binutils-devel bind-devel
+
 USER 1000:1000
