@@ -50,13 +50,11 @@ WORKDIR /
 
 RUN rm -rf /toolchain
 
-RUN dnf -y -q install zstd libzstd libzstd-devel glib2 glib2-devel
+RUN dnf -y -q install glib2 glib2-devel
 
 RUN dnf -y -q install pixman pixman-devel
 
 RUN dnf -y -q install glibc-static glib2-static pcre-static
-
-RUN dnf -y -q install xz-devel
 
 RUN dnf -y -q install python2-scons swig python2-six
 
