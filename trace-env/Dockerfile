@@ -36,15 +36,15 @@ RUN cp ../riscv-binutils/include/ansidecl.h ../riscv-binutils/include/bfdlink.h 
 
 RUN cp ../riscv-binutils/opcodes/disassemble.h /opt/riscv/include
 
-RUN cp build-gdb-newlib/bfd/bfd.h build-gdb-newlib/bfd/bfd_stdint.h /opt/riscv/include
+RUN cp build-binutils-linux/bfd/bfd.h build-binutils-linux/bfd/bfd_stdint.h /opt/riscv/include
 
-WORKDIR /toolchain/riscv-gnu-toolchain/build/build-gdb-newlib/intl
+WORKDIR /toolchain/riscv-gnu-toolchain/build/build-binutils-linux/intl
 
 RUN make libintl.a
 
 WORKDIR /toolchain/riscv-gnu-toolchain/build
 
-RUN cp build-gdb-newlib/opcodes/libopcodes.a build-gdb-newlib/bfd/libbfd.a build-gdb-newlib/libiberty/libiberty.a build-gdb-newlib/intl/libintl.a /opt/riscv/lib64
+RUN cp build-binutils-linux/opcodes/libopcodes.a build-binutils-linux/bfd/libbfd.a build-binutils-linux/libiberty/libiberty.a build-binutils-linux/intl/libintl.a /opt/riscv/lib64
 
 WORKDIR /
 
