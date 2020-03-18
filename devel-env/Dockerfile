@@ -1,41 +1,27 @@
-FROM map/build-env
+FROM bdutrosv/map-build:latest
 
 MAINTAINER Brett Dutro (brett.dutro@gmail.com)
 
-RUN mkdir -p /tmp/iwyu/build
-
-RUN mkdir -p /opt/iwyu
-
-RUN dnf -y -q install vim emacs neovim gdb valgrind findutils procps nodejs npm zsh util-linux-user ccls file clang-tools-extra llvm-devel llvm-libs clang-devel clang-libs wget
-
-WORKDIR /tmp/iwyu
-
-RUN git clone https://github.com/include-what-you-use/include-what-you-use.git
-
-WORKDIR /tmp/iwyu/include-what-you-use
-
-RUN git checkout clang_9.0
-
-WORKDIR /tmp/iwyu/build
-
-RUN CC=clang CXX=clang++ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/opt/iwyu ../include-what-you-use
-
-RUN make -j8
-
-RUN make install
-
-WORKDIR /
-
-RUN rm -rf /tmp/iwyu
-
-RUN ln -s /usr/lib64 /opt/iwyu
-
-RUN useradd -m -u 1000 devuser
-
-RUN mkdir /work; chown -R 1000:1000 /work
-
-RUN chsh -s /usr/bin/zsh devuser
+RUN dnf -y -q install vim emacs neovim gdb valgrind findutils procps nodejs npm zsh util-linux-user ccls file clang-tools-extra llvm-devel llvm-libs clang-devel clang-libs wget && \
+    dnf -y -q clean all && \
+    mkdir -p /tmp/iwyu/build && \
+    mkdir -p /opt/iwyu && \
+    cd /tmp/iwyu && \
+    git clone https://github.com/include-what-you-use/include-what-you-use.git && \
+    cd /tmp/iwyu/include-what-you-use && \
+    git checkout clang_9.0 && \
+    cd /tmp/iwyu/build && \
+    CC=clang CXX=clang++ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/opt/iwyu ../include-what-you-use && \
+    make -j8 && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/iwyu && \
+    ln -s /usr/lib64 /opt/iwyu && \
+    useradd -m -u 1000 devuser && \
+    mkdir /work && \
+    chown -R 1000:1000 /work && \
+    chsh -s /usr/bin/zsh devuser && \
+    mkdir /home/devuser/dotfiles && \
+    chown -R 1000:1000 /home/devuser/dotfiles
 
 USER 1000:1000
-
-RUN mkdir ~/dotfiles
