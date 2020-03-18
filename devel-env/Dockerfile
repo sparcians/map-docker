@@ -6,7 +6,7 @@ RUN mkdir -p /tmp/iwyu/build
 
 RUN mkdir -p /opt/iwyu
 
-RUN dnf -y -q install vim emacs neovim gdb valgrind findutils procps nodejs npm zsh util-linux-user ccls file clang-tools-extra llvm-devel llvm-libs clang-devel clang-libs
+RUN dnf -y -q install vim emacs neovim gdb valgrind findutils procps nodejs npm zsh util-linux-user ccls file clang-tools-extra llvm-devel llvm-libs clang-devel clang-libs wget
 
 WORKDIR /tmp/iwyu
 
